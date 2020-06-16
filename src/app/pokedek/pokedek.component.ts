@@ -2,13 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 
 import { HtmlDocumentService } from '../shared/html-document/html-document.service';
+import { PokemonParsed } from '../shared/models/pokemon.model';
 import { initialize } from '../shared/operators/initialize.operator';
-import { PokemonParsedModel } from './models/pokemon.model';
-import { PokedekStoreService } from './pokedek-store.service';
-import { PokedekService } from './pokedek.service';
+import { PokeStoreService } from '../shared/poke-store.service';
 
 @Component({
   selector: 'app-pokedek',
@@ -16,7 +15,7 @@ import { PokedekService } from './pokedek.service';
   styleUrls: ['./pokedek.component.scss'],
 })
 export class PokedekComponent implements OnInit, OnDestroy {
-  information$: Observable<PokemonParsedModel>;
+  information$: Observable<PokemonParsed>;
   loading$ = new BehaviorSubject<boolean>(false);
   route$: Subscription;
 
@@ -24,8 +23,7 @@ export class PokedekComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private htmlDocument: HtmlDocumentService,
-    private api: PokedekService,
-    private store: PokedekStoreService
+    private store: PokeStoreService
   ) {}
 
   ngOnInit() {
@@ -33,6 +31,10 @@ export class PokedekComponent implements OnInit, OnDestroy {
       this.information$ = this.store.getPokemonInformation(params.id).pipe(
         initialize(() => {
           this.loading$.next(true);
+        }),
+        tap((data) => {
+          this.htmlDocument.setTitle(`Pokémon ${data.name.default}`);
+          this.htmlDocument.setMetaDescription(`${data.name.default}, ${data.description}`);
         }),
         finalize(() => {
           this.loading$.next(false);

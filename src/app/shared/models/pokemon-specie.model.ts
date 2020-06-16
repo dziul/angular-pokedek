@@ -1,4 +1,4 @@
-export interface PokemonSpecieModel {
+export interface PokemonSpecie {
   base_happiness: number;
   capture_rate: number;
   color: Color;

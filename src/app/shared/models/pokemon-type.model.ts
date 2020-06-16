@@ -1,4 +1,4 @@
-export interface PokemonTypeModel {
+export interface PokemonType {
   damage_relations: DamageRelations;
   game_indices: GameIndex[];
   generation: Generation;

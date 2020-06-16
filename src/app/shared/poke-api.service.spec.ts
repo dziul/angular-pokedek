@@ -4,17 +4,17 @@ import { TestBed } from '@angular/core/testing';
 import { Interceptor } from 'src/app/core/interceptor/interceptor.module';
 
 import { PokemonModel } from './models/pokemon.model';
-import { PokedekService } from './pokedek.service';
+import { PokeApiService } from './poke-api.service';
 
-describe('PokedekService', () => {
-  let service: PokedekService;
+describe('PokeApiService', () => {
+  let service: PokeApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, Interceptor],
-      providers: [PokedekService],
+      providers: [PokeApiService],
     });
-    service = TestBed.inject(PokedekService);
+    service = TestBed.inject(PokeApiService);
   });
 
   it('Should be created', () => {
@@ -22,7 +22,7 @@ describe('PokedekService', () => {
   });
 
   it('Should return data, get name and id', (done) => {
-    service.getPokemon(2).subscribe((data: PokemonModel) => {
+    service.getPokemon(2).subscribe((data) => {
       expect(data.name).toEqual('ivysaur');
       expect(data.id).toEqual(2);
       done();

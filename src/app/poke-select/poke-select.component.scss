@@ -3,14 +3,13 @@
   height: 100%;
 
   &#{__item} {
-    &:hover {
-      background: #eee;
-    }
-    &.active {
-      background: #eee;
-    }
-
     a {
+      &:hover {
+        background: #eee;
+      }
+      &.active {
+        background: #eee;
+      }
       display: flex;
       align-items: center;
       text-transform: capitalize;
@@ -28,6 +27,7 @@
   &#{__image} {
     width: 100%;
     max-width: 56px;
+    min-height: 42px;
     // opacity: 1;
     transition: opacity 0.5s;
   }

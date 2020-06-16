@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { PictureComponent } from '../picture/picture.component';
-import { PokeListComponent } from './poke-list/poke-list.component';
+import { PokeSelectComponent } from '../poke-select/poke-select.component';
 import { PokedekComponent } from './pokedek.component';
 import { PokedekRoutingModule } from './pokedek.routing.module';
 
 @NgModule({
-  declarations: [PokedekComponent, PokeListComponent, PictureComponent],
+  declarations: [PokedekComponent, PokeSelectComponent, PictureComponent],
   imports: [CommonModule, PokedekRoutingModule, ScrollingModule],
 })
 export class PokedekModule {}

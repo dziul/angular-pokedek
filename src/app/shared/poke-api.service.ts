@@ -12,14 +12,14 @@ import {
   PokemonGenerations,
   PokemonGenerationWithPokemonListParsed,
 } from './models/pokemon-generation.model';
-import { PokemonSpecieModel } from './models/pokemon-specie.model';
-import { PokemonTypeModel } from './models/pokemon-type.model';
-import { PokemonModel, PokemonParsedModel } from './models/pokemon.model';
+import { PokemonSpecie } from './models/pokemon-specie.model';
+import { PokemonType } from './models/pokemon-type.model';
+import { Pokemon, PokemonParsed } from './models/pokemon.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PokedekService {
+export class PokeApiService {
   languageDefault = 'en'; // window.navigator.language.replace(/^(\w+)-.+/, '$1')
   languageOriginal = 'ja';
 
@@ -68,7 +68,7 @@ export class PokedekService {
     return this.getAllGeneration().pipe(mergeAll(), pluck('pokemons'), concatAll(), toArray());
   }
 
-  pokemonSpecieParser(data$: Observable<PokemonSpecieModel>) {
+  pokemonSpecieParser(data$: Observable<PokemonSpecie>) {
     return data$.pipe(
       mergeMap((response) =>
         forkJoin({
@@ -82,18 +82,18 @@ export class PokedekService {
 
   getPokemon(nameOrId: string | number) {
     const data = {};
-    return this.get<PokemonModel>(`/pokemon/${nameOrId}`).pipe(
+    return this.get<Pokemon>(`/pokemon/${nameOrId}`).pipe(
       mergeMap((response) =>
         forkJoin({
           base: of(response),
-          species: this.pokemonSpecieParser(this.get<PokemonSpecieModel>(response.species.url)),
-          type: merge(
-            ...response.types.map((type) => this.get<PokemonTypeModel>(type.type.url))
-          ).pipe(toArray()),
+          species: this.pokemonSpecieParser(this.get<PokemonSpecie>(response.species.url)),
+          type: merge(...response.types.map((type) => this.get<PokemonType>(type.type.url))).pipe(
+            toArray()
+          ),
         })
       ),
       map(
-        (response): PokemonParsedModel => {
+        (response): PokemonParsed => {
           const { base, species } = response;
           const filteredNames = this.searchFilterDataByLanguage(species.base.names, 'name');
 
@@ -121,7 +121,7 @@ export class PokedekService {
     );
   }
 
-  typeParser(data$: Observable<PokemonTypeModel>) {
+  typeParser(data$: Observable<PokemonType>) {
     return data$;
   }
 

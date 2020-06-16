@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 
-import { forkJoin, Observable, of } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { publishReplay, refCount } from 'rxjs/operators';
 
 import { shareReplayOnlyOneEmitter } from '../shared/operators/shareReplayOnlyOneEmitter.operator';
 import {
-  MainRegionWithId,
+  PokemonGenerationItem,
   PokemonGenerationWithPokemonListParsed,
 } from './models/pokemon-generation.model';
-import { PokemonParsedModel } from './models/pokemon.model';
-import { PokedekService } from './pokedek.service';
+import { PokemonParsed } from './models/pokemon.model';
+import { PokeApiService } from './poke-api.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PokedekStoreService {
-  pokelist$: Observable<MainRegionWithId[]>;
+export class PokeStoreService {
+  pokelist$: Observable<PokemonGenerationItem[]>;
 
   generationList$: Observable<PokemonGenerationWithPokemonListParsed[]>;
 
-  pokemons: { [key: string]: Observable<PokemonParsedModel> } = {};
+  pokemons: { [key: string]: Observable<PokemonParsed> } = {};
 
-  constructor(private api: PokedekService) {}
+  constructor(private api: PokeApiService) {}
 
   protected onlyOneEmitter<T>(observer$: Observable<T>) {
     return observer$.pipe(publishReplay(1), refCount());

@@ -1,12 +1,12 @@
 {
-  "name": "pokedek-angular-mvp",
+  "name": "poke-dek",
   "version": "0.0.1",
   "scripts": {
     "env-config": "ts-node --skip-project env.config.ts",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "ghp:build": "ng build --prod --base-href https://dziul.github.io/pokedek-angular-mvp/",
+    "build": "npm run env-config & ng build",
+    "ghp:build": "ng build --prod --base-href=https://dziul.github.io/pokedek-angular-mvp/ --output-path=docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

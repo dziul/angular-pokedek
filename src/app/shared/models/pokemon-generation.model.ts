@@ -1,5 +1,5 @@
 export interface PokemonGenerationWithPokemonListParsed extends PokemonGenerationParsed {
-  pokemons: MainRegionWithId[];
+  pokemons: PokemonGenerationItem[];
 }
 
 export interface PokemonGenerations {
@@ -31,7 +31,7 @@ interface MainRegion {
   url: string;
 }
 
-export interface MainRegionWithId extends MainRegion {
+export interface PokemonGenerationItem extends MainRegion {
   id: number;
   imageIcon: string;
 }

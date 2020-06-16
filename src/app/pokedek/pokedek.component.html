@@ -10,6 +10,10 @@
           {{ information.name.default }}<small>#{{ information.id }}</small>
         </h2>
         <p class="pokedek__info__description">{{ information.description }}</p>
+
+        <span>height: {{ information.height }}m</span><br />
+        <span>weight: {{ information.weight }}kg</span>
+
         <span class="pokedek__info__water-mark">{{ information.name.original }}</span>
       </div>
       <app-picture

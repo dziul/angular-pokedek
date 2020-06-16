@@ -45,6 +45,7 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
 - [x] RxJs
   - [x] Customização de operator rxJs
   - [x] Tratamento de dados
+  - [ ] Tratamento de _loading_
 - [x] Http
   - [x] Tratamento de requisição
   - [x] Customizaão do Interceptor
@@ -56,8 +57,8 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
   - [x] Criação dos Models
   - [x] Solicitação multiplas
 - [ ] Typescript
-
   - Condições
+- [x] [Gerenciamento/Criação de ambiente](./env.config.ts)
 
 ### Referências
 

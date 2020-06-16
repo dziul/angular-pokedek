@@ -14,25 +14,25 @@ import { BehaviorSubject, Observable, Subscribable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { initialize } from 'src/app/shared/operators/initialize.operator';
 
-import { MainRegionWithId } from '../models/pokemon-generation.model';
-import { PokedekStoreService } from '../pokedek-store.service';
+import { PokemonGenerationItem } from '../shared/models/pokemon-generation.model';
+import { PokeStoreService } from '../shared/poke-store.service';
 
 @Component({
   selector: 'app-poke-list',
-  templateUrl: './poke-list.component.html',
-  styleUrls: ['./poke-list.component.scss'],
+  templateUrl: './poke-select.component.html',
+  styleUrls: ['./poke-select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PokeListComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PokeSelectComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('lazy', { read: ElementRef }) imagesElement: QueryList<
     ElementRef<HTMLImageElement>
   >;
 
-  list$: Observable<MainRegionWithId[]>;
+  list$: Observable<PokemonGenerationItem[]>;
   loading$ = new BehaviorSubject<boolean>(false);
   imagesElement$: Subscription;
 
-  constructor(private store: PokedekStoreService, private renderer2: Renderer2) {}
+  constructor(private store: PokeStoreService, private renderer2: Renderer2) {}
 
   ngOnInit() {
     this.list$ = this.store.getPokemonList().pipe(

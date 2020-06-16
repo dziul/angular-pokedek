@@ -1,6 +1,6 @@
 import { PokemonGenerationParsed } from './pokemon-generation.model';
 
-export interface PokemonParsedModel {
+export interface PokemonParsed {
   height: number;
   weight: number;
   description: string;
@@ -17,7 +17,7 @@ export interface PokemonParsedModel {
   generation: PokemonGenerationParsed;
 }
 
-export interface PokemonModel {
+export interface Pokemon {
   id: number;
   name: string;
   base_experience: number;
