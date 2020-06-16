@@ -1,0 +1,19 @@
+.menu {
+  padding: 15px;
+
+  a {
+    &.active {
+      background: yellow;
+    }
+  }
+}
+.content {
+  position: relative;
+}
+
+.loading-lazy-component {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}

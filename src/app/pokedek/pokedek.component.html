@@ -1,0 +1,26 @@
+<div class="pokedek">
+  <div class="app-poke-list">
+    <app-poke-list></app-poke-list>
+  </div>
+  <div class="pokedek__content">
+    <div *ngIf="information$ | async as information; else loading" class="pokedek__info">
+      <div class="pokedek__info__content">
+        <small class="pokedek__info__small">{{ information.generation.name.default }}</small>
+        <h2 class="pokedek__info__name">
+          {{ information.name.default }}<small>#{{ information.id }}</small>
+        </h2>
+        <p class="pokedek__info__description">{{ information.description }}</p>
+        <span class="pokedek__info__water-mark">{{ information.name.original }}</span>
+      </div>
+      <app-picture
+        [src]="information.image.default"
+        [alt]="information.name.default"
+        class="pokedek__info__image"
+      >
+      </app-picture>
+    </div>
+    <ng-template #loading>
+      loading...
+    </ng-template>
+  </div>
+</div>

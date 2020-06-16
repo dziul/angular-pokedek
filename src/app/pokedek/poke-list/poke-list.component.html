@@ -1,0 +1,19 @@
+<ul class="poke-list" #scrolling>
+  <li *ngFor="let item of list$ | async" class="poke-list__item">
+    <a [routerLink]="['/pokedek', item.id]" routerLinkActive="active">
+      <img
+        [attr.data-src]="item.imageIcon"
+        class="invisible poke-list__image"
+        [attr.aria-hidden]="true"
+        [alt]="item.name"
+        #lazy
+      />
+      <h4 class="poke-list__item__name">{{ item.name }} #{{ item.id }}</h4>
+    </a>
+  </li>
+  <!-- <div *ngIf="loading$ | async">Loading...</div> -->
+</ul>
+
+<!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scrolling>
+  <div *cdkVirtualFor="let item of items" class="example-item">{{ item || 'Loading...' }}</div>
+</cdk-virtual-scroll-viewport> -->
