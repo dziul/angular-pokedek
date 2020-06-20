@@ -1,0 +1,22 @@
+$tableSmall: 600px;
+$table: 768px;
+$desktop: 1024px;
+$desktopLarge: 1440px;
+$desktopExtraLarge: 1920px;
+
+// conceito first mobile
+@mixin table {
+  @media (min-width: $table) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+@mixin desktopLarge {
+  @media (min-width: $desktopLarge) {
+    @content;
+  }
+}

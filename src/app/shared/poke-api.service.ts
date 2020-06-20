@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { forkJoin, from, merge, Observable, of } from 'rxjs';
 import { concatAll, map, mergeAll, mergeMap, pluck, retry, take, toArray } from 'rxjs/operators';
+import leftFillNumber from 'src/utils/leftFillNumber';
 
 import { PokemonEvolutionChainModel } from './models/pokemon-evolution-chain.model';
 import {
@@ -155,7 +156,10 @@ export class PokeApiService {
   }
 
   getPokemonImageDefault(id: number) {
-    return `https://pokeres.bastionbot.org/images/pokemon/${id}.png`; // cors ->ok
+    return `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${leftFillNumber(id, 3)}.png`;
+    // return `https://img.pokemondb.net/artwork/large/${id}.jpg`;
+    // return `https://img.pokemondb.net/artwork/vector/large/${id}.png`; //legal, mas não 100% coberto
+    // return `https://pokeres.bastionbot.org/images/pokemon/${id}.png`; // cors ->ok , porem não é 100% completo
   }
   getPokemonImageIcon(nameId: string) {
     // return `https://img.pokemondb.net/sprites/black-white/anim/normal/${nameId}.gif`;

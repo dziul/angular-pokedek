@@ -1,19 +1,51 @@
-<ul class="poke-list" #scrolling>
-  <li *ngFor="let item of list$ | async" class="poke-list__item">
-    <a [routerLink]="['/pokedek', item.id]" routerLinkActive="active">
+<label class="poke-select__input" *ngIf="afterViewInit">
+  <input
+    type="text"
+    placeholder="Search by name or id..."
+    [(ngModel)]="inputValue"
+    (keydown)="onKeyDownInput($event)"
+    #input
+  />
+  <button
+    mat-button
+    *ngIf="inputValue"
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="inputValue = ''"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</label>
+<ul
+  *ngIf="list$ | async as list"
+  class="poke-select__select"
+  role="listbox"
+  (keydown)="onKeyDown($event)"
+>
+  <li
+    *ngFor="let item of list | where: inputValue; let index = index"
+    class="poke-select__option"
+    role="listitem"
+  >
+    <a
+      mat-button
+      [routerLink]="['/pokedek', item.id]"
+      routerLinkActive="active"
+      #linkActive="routerLinkActive"
+      [keyboardNavigableItem]="item.name"
+      (click)="onClick(index)"
+    >
+      <h4 class="poke-select__text">
+        {{ item.name }} <small>#{{ item.id }}</small>
+      </h4>
       <img
         [attr.data-src]="item.imageIcon"
-        class="invisible poke-list__image"
+        class="poke-select__image"
         [attr.aria-hidden]="true"
         [alt]="item.name"
         #lazy
-      />
-      <h4 class="poke-list__item__name">{{ item.name }} #{{ item.id }}</h4>
+      /><!-- depois de carregado add class checked-->
     </a>
   </li>
-  <!-- <div *ngIf="loading$ | async">Loading...</div> -->
 </ul>
-
-<!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scrolling>
-  <div *cdkVirtualFor="let item of items" class="example-item">{{ item || 'Loading...' }}</div>
-</cdk-virtual-scroll-viewport> -->

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { BehaviorSubject, empty, Observable, Subject } from 'rxjs';
+import { catchError, delay, finalize, tap } from 'rxjs/operators';
 
 import { HtmlDocumentService } from '../shared/html-document/html-document.service';
 import { PokemonParsed } from '../shared/models/pokemon.model';
@@ -16,8 +16,10 @@ import { PokeStoreService } from '../shared/poke-store.service';
 })
 export class PokedekComponent implements OnInit, OnDestroy {
   information$: Observable<PokemonParsed>;
-  loading$ = new BehaviorSubject<boolean>(false);
-  route$: Subscription;
+
+  imageLoaded$ = new BehaviorSubject(false);
+  error$ = new Subject<number | string>();
+  paramsId$ = new Subject<string | number>();
 
   constructor(
     private route: ActivatedRoute,
@@ -27,23 +29,28 @@ export class PokedekComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.route$ = this.route.params.subscribe((params: { id: number | string }) => {
+    this.route.params.subscribe((params: { id: number | string }) => {
       this.information$ = this.store.getPokemonInformation(params.id).pipe(
         initialize(() => {
-          this.loading$.next(true);
+          this.imageLoaded$.next(false);
+          this.error$.next(undefined);
         }),
+        delay(1000),
         tap((data) => {
           this.htmlDocument.setTitle(`Pokémon ${data.name.default}`);
           this.htmlDocument.setMetaDescription(`${data.name.default}, ${data.description}`);
         }),
-        finalize(() => {
-          this.loading$.next(false);
+        catchError((error) => {
+          this.error$.next(params.id);
+          return empty();
         })
       );
     });
   }
 
-  ngOnDestroy() {
-    this.route$.unsubscribe();
+  onImageLoaded(on) {
+    this.imageLoaded$.next(on);
   }
+
+  ngOnDestroy() {}
 }

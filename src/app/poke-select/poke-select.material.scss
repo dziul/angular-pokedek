@@ -1,0 +1,69 @@
+$selector: '.poke-select';
+
+#{$selector} {
+  @include element('input') {
+    .mat-icon-button {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      mat-icon {
+        font-size: 14px;
+      }
+    }
+  }
+  @include element('option') {
+    .mat-button {
+      font-size: 14px;
+      text-transform: capitalize;
+      color: #333;
+      width: 100%;
+      padding: 0;
+      margin: 4px 0;
+      font-weight: 700;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+
+      .mat-button-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        transition: padding-left 0.1s;
+      }
+
+      &:focus {
+        outline: none;
+      }
+      &.active {
+        opacity: 0.3;
+        cursor: default;
+
+        &:hover {
+          #{$selector} {
+            @include element('text') {
+              font-weight: 400;
+            }
+          }
+        }
+
+        #{$selector} {
+          @include element('image') {
+            filter: grayscale(100%);
+          }
+        }
+      }
+
+      &:hover,
+      &.focused {
+        .mat-button-focus-overlay {
+          opacity: 0.02;
+        }
+        #{$selector} {
+          @include element('text') {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}
