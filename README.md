@@ -99,3 +99,6 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
     - https://netbasal.com/accessibility-made-easy-with-angular-cdk-1caaf3d98de2
 - breakpoint scss @mixin
   - https://css-tricks.com/approaches-media-queries-sass/
+- deploy ~ github page
+  - https://blog.bitsrc.io/deploy-your-angular-project-to-github-pages-7cbacb96f35b
+  - https://dzone.com/articles/deploy-angular-app-on-github-pages
