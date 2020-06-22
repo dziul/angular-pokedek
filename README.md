@@ -40,7 +40,7 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
   - [x] Lazy Component com Loader
   - [x] Uso de params
   - [ ] Uso de queryParams
-  - [ ] Tratamento de _errors_
+  - [x] Tratamento de _errors_
 - [ ] Forms
 - [x] RxJs
   - [x] Customização de operator rxJs
@@ -58,14 +58,14 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
 - [x] Uso de API ([pokeapi](https://pokeapi.co/))
   - [x] Criação dos Models
   - [x] Solicitação multiplas
-- [ ] Typescript
+- Typescript
   - Condições
 - [x] [Gerenciamento/Criação de ambiente](./env.config.ts)
 - [x] Input/ Output
 - [x] Pipes
-  - [ ] Criação de pipe
+  - [x] Criação de pipe
 - [x] Diretivas
-  - [ ] Criação de diretiva
+  - [x] Criação de diretiva
 
 ### Referências
 
