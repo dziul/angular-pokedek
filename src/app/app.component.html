@@ -4,10 +4,33 @@
   *ngIf="loading"
 ></mat-progress-bar>
 
-<!-- <div class="menu">
-  <a routerLink="started" routerLinkActive="active">started</a>
-  <a [routerLink]="['pokedek', '1']" routerLinkActive="active">pokedek</a>
-  <a routerLink="">home</a>
-</div> -->
+<div class="menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="">
+      <span>Home</span>
+    </button>
+    <button
+      mat-menu-item
+      routerLink="pokedek"
+      routerLinkActive="active"
+      #linkActive="routerLinkActive"
+      [disabled]="linkActive.isActive"
+    >
+      <span>Pokedek</span>
+    </button>
+    <button
+      mat-menu-item
+      routerLink="started"
+      routerLinkActive="active"
+      #linkActivee="routerLinkActive"
+      [disabled]="linkActivee.isActive"
+    >
+      <span>Started page</span>
+    </button>
+  </mat-menu>
+</div>
 
 <router-outlet></router-outlet>

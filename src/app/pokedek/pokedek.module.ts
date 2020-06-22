@@ -6,11 +6,12 @@ import { PictureComponent } from '../picture/picture.component';
 import { PokeSelectModule } from '../poke-select/poke-select.module';
 import { PokeballLoaderComponent } from '../pokeball-loader/pokeball-loader.component';
 import { MaterialComponentsModule } from '../shared/material-components/material-components.module';
+import { InformationComponent } from './information/information.component';
 import { PokedekComponent } from './pokedek.component';
 import { PokedekRoutingModule } from './pokedek.routing.module';
 
 @NgModule({
-  declarations: [PokedekComponent, PictureComponent, PokeballLoaderComponent],
+  declarations: [PokedekComponent, PictureComponent, PokeballLoaderComponent, InformationComponent],
   imports: [
     CommonModule,
     PokedekRoutingModule,
