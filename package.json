@@ -1,12 +1,12 @@
 {
-  "name": "poke-dek",
-  "version": "0.0.1",
+  "name": "angular-pokedek",
+  "version": "0.1.6",
   "scripts": {
     "env-config": "ts-node --skip-project env.config.ts",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "ghpage": "ng build --prod --base-href=/pokedek-angular/ --output-path=docs",
+    "githubpage": "ng build --prod --base-href=/pokedek-angular/ --output-path=docs & cp docs/index.html docs/404.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
