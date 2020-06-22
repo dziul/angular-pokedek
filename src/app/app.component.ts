@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const appTitle = this.htmlDocument.getTitle();
-    this.routeConfig$ = this.router.events
+    this.router.events
       .pipe(
         tap((event) => {
           if (event instanceof NavigationStart) {
@@ -54,7 +54,5 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       });
   }
-  ngOnDestroy() {
-    this.routeConfig$.unsubscribe();
-  }
+  ngOnDestroy() {}
 }

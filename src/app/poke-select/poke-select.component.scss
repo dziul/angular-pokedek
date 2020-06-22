@@ -1,0 +1,60 @@
+@import '../../assets/styles/mixins/index.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  // overflow: hidden;
+  // overflow-y: auto;
+  .poke-select {
+    @include element('input') {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      background: #fff;
+      padding: 12px 16px;
+      box-sizing: border-box;
+      > input {
+        font-size: 14px;
+        line-height: 24px;
+        box-sizing: border-box;
+        border: 0;
+        width: 100%;
+        background: none;
+        text-align: right;
+      }
+    }
+
+    @include element('select') {
+      flex-grow: 1;
+      flex-basis: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+
+    @include element('text') {
+      margin: 0;
+      margin-right: 8px;
+
+      small {
+        font-size: 80%;
+        opacity: 0.4;
+      }
+    }
+
+    @include element('image') {
+      width: 100%;
+      max-width: 56px;
+      min-height: 42px;
+      transition: opacity 0.5s;
+      opacity: 0;
+      &.checked {
+        opacity: 1;
+      }
+    }
+  }
+}

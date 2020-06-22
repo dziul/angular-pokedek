@@ -40,24 +40,32 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
   - [x] Lazy Component com Loader
   - [x] Uso de params
   - [ ] Uso de queryParams
-  - [ ] Tratamento de _errors_
+  - [x] Tratamento de _errors_
 - [ ] Forms
 - [x] RxJs
   - [x] Customização de operator rxJs
   - [x] Tratamento de dados
+  - [ ] Tratamento de _loading_
+  - [x] Criação de _Observables/Subscriptions_
 - [x] Http
   - [x] Tratamento de requisição
   - [x] Customizaão do Interceptor
   - [ ] Guard Auth
   - [ ] Tratamento de _errors_
-- [ ] Material Design
+- [x] Material Design
+  - [x] Cusstomização de css
 - [ ] Desenvolvimento de paginação
 - [x] Uso de API ([pokeapi](https://pokeapi.co/))
   - [x] Criação dos Models
   - [x] Solicitação multiplas
-- [ ] Typescript
-
+- Typescript
   - Condições
+- [x] [Gerenciamento/Criação de ambiente](./env.config.ts)
+- [x] Input/ Output
+- [x] Pipes
+  - [x] Criação de pipe
+- [x] Diretivas
+  - [x] Criação de diretiva
 
 ### Referências
 
@@ -85,3 +93,9 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
 - Operators
 - Views
   - https://indepth.dev/exploring-angular-dom-manipulation-techniques-using-viewcontainerref/
+- Acessibilidade
+  - https://stackblitz.com/edit/angular-akdjhg
+  - https://stackblitz.com/edit/angular-keyb-1
+    - https://netbasal.com/accessibility-made-easy-with-angular-cdk-1caaf3d98de2
+- breakpoint scss @mixin
+  - https://css-tricks.com/approaches-media-queries-sass/
