@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "ghp:build": "ng build --prod --base-href=https://dziul.github.io/pokedek-angular/ --output-path=docs",
+    "build:github-page": "ng build --prod --base-href=https://dziul.github.io/pokedek-angular/ --output-path=docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

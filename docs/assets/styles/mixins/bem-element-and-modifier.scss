@@ -1,0 +1,43 @@
+@function element-selector($name, $separator: '__') {
+  $element: ();
+  @each $selector in & {
+    $current: '';
+    $parent: nth($selector, length($selector));
+    $parentSize: str-length(#{$parent});
+    $parentPseudo: str-index(#{$parent}, ':');
+    $parentAttribute: str-index(#{$parent}, '[');
+    @if ($parentPseudo != null) {
+      $parent: str-slice($parent, 0, $parentPseudo - 1);
+      $parentAttribute: str-index($parent, '[');
+      @if ($parentAttribute != null) {
+        $parent: str-slice($parent, 0, $parentAttribute - 1);
+        $current: unquote('#{$selector} #{$parent}#{$separator}#{$name}');
+      }
+    } @else if ($parentAttribute != null) {
+      $parent: str-slice($parent, 0, $parentAttribute - 1);
+      $current: unquote('#{$selector} #{$parent}#{$separator}#{$name}');
+    } @else {
+      $current: unquote('#{$selector}#{$separator}#{$name}');
+      $element: append($element, $current, comma);
+    }
+    @return $element;
+  }
+}
+
+@mixin element($name) {
+  @at-root #{element-selector($name, "__")} {
+    @content;
+  }
+}
+
+@mixin elementDash($name) {
+  @at-root #{element-selector($name, "-")} {
+    @content;
+  }
+}
+
+@mixin modifier($name) {
+  @at-root #{element-selector($name, "--")} {
+    @content;
+  }
+}
