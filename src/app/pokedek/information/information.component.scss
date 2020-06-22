@@ -1,0 +1,190 @@
+@import '../../../assets/styles/mixins/index.scss';
+
+.pokedek {
+  display: flex;
+  height: 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+  background: rgba(253, 213, 0, 0.5);
+
+  @include element('content') {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    background: rgb(253, 213, 0);
+    position: relative;
+    z-index: 5;
+
+    flex-grow: 1;
+    flex-basis: 0;
+
+    &:after {
+      //efeito diagonal
+      content: '';
+      height: 100%;
+      width: 200px;
+      position: absolute;
+      right: 0;
+      background: inherit;
+      z-index: 0;
+      transform: skew(-10deg) translateX(100px);
+      z-index: 0;
+    }
+  }
+
+  @include element('info') {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    padding: 60px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+    @include element('content') {
+      position: relative;
+      width: 100%;
+    }
+
+    @include element('name') {
+      font-size: 72px;
+      line-height: 1;
+      text-transform: uppercase;
+      font-weight: 900;
+
+      small {
+        font-size: 30%;
+        padding-left: 4px;
+      }
+
+      @media (min-width: 1281px) {
+        font-size: 92px;
+      }
+    }
+    @include element('small') {
+      font-size: 12px;
+      display: block;
+    }
+
+    @include element('description') {
+      padding-top: 32px;
+      font-size: 16px;
+      line-height: 1.3;
+      max-width: 360px;
+      @media (min-width: 1281px) {
+        max-width: 460px;
+      }
+    }
+
+    @include element('water-mark') {
+      position: absolute;
+      top: -60px;
+      left: 0;
+      font-size: 120px;
+      line-height: 1;
+      opacity: 0.05;
+      white-space: nowrap;
+      @media (min-width: 1281px) {
+        top: -90px;
+        font-size: 180px;
+      }
+    }
+
+    @include element('image') {
+      position: absolute;
+      bottom: 36px;
+      right: -20%;
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      max-height: 520px;
+
+      @media (min-width: 1281px) {
+        right: -12%;
+        max-width: 460px;
+      }
+    }
+  }
+
+  @include element('select') {
+    height: 100%;
+    position: relative;
+    // z-index: 3;
+    width: 30%;
+  }
+
+  @include element('loader') {
+    & > span {
+      font-size: 16px;
+      font-weight: 700;
+      padding-left: 5px;
+    }
+  }
+
+  @include element('error') {
+    @include elementDash('content') {
+      position: fixed;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      bottom: 0;
+      left: 0;
+    }
+    @include elementDash('text') {
+      max-width: 220px;
+      line-height: 1.2;
+      text-align: center;
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      font-size: 18px;
+      position: relative;
+      opacity: 0;
+      animation: balon 0.2s forwards 0.2s;
+      &:before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: inherit;
+        position: absolute;
+        left: 30px;
+        bottom: -10px;
+        transform: skew(-40deg, 4deg) rotate(-30deg);
+        border-radius: 0 0 10px 0;
+      }
+      > span {
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+    }
+    @include elementDash('image') {
+      max-height: 360px;
+      transform: translate(-380px, 380px);
+      animation: toastyyy 0.2s ease-out forwards;
+    }
+  }
+}
+
+@keyframes toastyyy {
+  0% {
+    transform: translate(-380px, 380px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes balon {
+  0% {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -1,12 +1,12 @@
 .menu {
-  padding: 15px;
-
-  a {
-    &.active {
-      background: yellow;
-    }
-  }
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 990;
+  margin: 10px;
 }
+
 .content {
   position: relative;
 }

@@ -35,7 +35,7 @@ export class PokeSelectComponent implements OnInit, AfterViewInit {
   inputValue = '';
   list$: Observable<PokemonGenerationItem[]>;
   loading$ = new BehaviorSubject<boolean>(false);
-  afterViewInit = false;
+
   focusByInput = false;
 
   keyManager: FocusKeyManager<SelectOptionDirective>;
@@ -78,8 +78,6 @@ export class PokeSelectComponent implements OnInit, AfterViewInit {
         });
       }
     );
-
-    this.afterViewInit = true;
   }
 
   onKeyDown(event: KeyboardEvent) {
