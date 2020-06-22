@@ -1,0 +1,21 @@
+@import '../../assets/styles/mixins/index.scss';
+
+.home {
+  @include element('form') {
+    width: 100%;
+    max-width: 420px;
+    font-size: 24px;
+
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+
+  @include element('option') {
+    &.mat-option {
+      padding: 8px 16px;
+      height: auto;
+      text-transform: capitalize;
+    }
+  }
+}

@@ -1,10 +1,10 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
   selector: '[lazySrcLoad]',
 })
-export class LazySrcLoadDirective implements AfterViewInit, OnInit, OnDestroy {
+export class LazySrcLoadDirective implements AfterViewInit, OnInit {
   private intersectionObserver: IntersectionObserver;
 
   constructor(private elementHost: ElementRef<HTMLImageElement>, private renderer: Renderer2) {}
@@ -23,10 +23,6 @@ export class LazySrcLoadDirective implements AfterViewInit, OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    this.intersectionObserver.disconnect();
-  }
-
   checked(element: HTMLImageElement) {
     this.renderer.addClass(element, 'checked');
   }
@@ -41,9 +37,9 @@ export class LazySrcLoadDirective implements AfterViewInit, OnInit, OnDestroy {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             this.renderer.setAttribute(entry.target, 'src', src);
-            this.intersectionObserver.unobserve(entry.target);
-            this.intersectionObserver.disconnect();
             this.checked(entry.target);
+            this.intersectionObserver.unobserve(entry.target);
+            this.intersectionObserver.disconnect(); //nas duvidas
           }
         }
       },
@@ -52,5 +48,7 @@ export class LazySrcLoadDirective implements AfterViewInit, OnInit, OnDestroy {
       }
     );
     this.intersectionObserver.observe(element);
+
+    console.log(this.intersectionObserver);
   }
 }

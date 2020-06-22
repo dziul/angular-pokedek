@@ -1,0 +1,26 @@
+<form class="home__form">
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="Pick one Pokémon"
+      aria-label="Pokémon"
+      [formControl]="formControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="onSelectedValue($event)"
+      autoActiveFirstOption
+    >
+      <mat-option
+        *ngFor="let option of filteredOptions$ | async"
+        [value]="option.id"
+        class="home__option"
+      >
+        {{ option.name }} #{{ option.id }}
+        <img [src]="option.imageIcon" [alt]="option.name" lazySrcLoad />
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

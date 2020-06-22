@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { HomeComponent } from './home/home.component';
+
 const routes: Routes = [
   {
     path: 'started',
@@ -10,11 +12,10 @@ const routes: Routes = [
     path: 'pokedek',
     loadChildren: () => import('./pokedek/pokedek.module').then((module) => module.PokedekModule),
   },
-  // {
-  //   path: '',
-  //   redirectTo: '',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '',
+    component: HomeComponent,
+  },
   { path: '**', redirectTo: '' },
 ];
 

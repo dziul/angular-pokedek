@@ -6,7 +6,6 @@ import {
   ElementRef,
   OnInit,
   QueryList,
-  Renderer2,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -27,9 +26,7 @@ import { SelectOptionDirective } from './select-option.directive';
 })
 export class PokeSelectComponent implements OnInit, AfterViewInit {
   @ViewChild('input', { read: ElementRef }) inputElement: ElementRef<HTMLInputElement>;
-  @ViewChildren('lazy', { read: ElementRef }) imagesElement: QueryList<
-    ElementRef<HTMLImageElement>
-  >;
+
   @ViewChildren(SelectOptionDirective) options: QueryList<SelectOptionDirective>;
 
   inputValue = '';
@@ -40,7 +37,7 @@ export class PokeSelectComponent implements OnInit, AfterViewInit {
 
   keyManager: FocusKeyManager<SelectOptionDirective>;
 
-  constructor(private store: PokeStoreService, private renderer2: Renderer2) {}
+  constructor(private store: PokeStoreService) {}
 
   ngOnInit() {
     this.list$ = this.store.getPokemonList().pipe(
@@ -53,31 +50,6 @@ export class PokeSelectComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.keyManager = new FocusKeyManager(this.options); // .withWrap().withTypeAhead();
-
-    const observer = new IntersectionObserver(
-      (entries: (IntersectionObserverEntry & { target: HTMLImageElement })[], observe) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            this.renderer2.setAttribute(entry.target, 'src', entry.target.dataset.src);
-            // this.renderer2.removeAttribute(entry.target, 'data-src');
-            this.renderer2.addClass(entry.target, 'checked');
-            this.renderer2.setAttribute(entry.target, 'aria-hidden', 'false');
-            observer.unobserve(entry.target);
-          }
-        }
-      },
-      {
-        rootMargin: '100px',
-      }
-    );
-    this.imagesElement.changes.subscribe(
-      // faz unsubscribe automaticamente
-      (data: QueryList<ElementRef<HTMLImageElement>>) => {
-        data.forEach((element) => {
-          observer.observe(element.nativeElement);
-        });
-      }
-    );
   }
 
   onKeyDown(event: KeyboardEvent) {
