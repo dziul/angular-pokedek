@@ -1,7 +1,5 @@
 
-  <a href="#">
-    <img src="https://i.imgur.com/p35e8Ny.png" alt="Angular Pokedek"/>
-  </a>
+  [![Angular Pokedek](https://i.imgur.com/p35e8Ny.png)](#)
 <br/>
 <br/>
 
