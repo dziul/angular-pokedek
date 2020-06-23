@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/p35e8Ny.png" style='width:100%;max-width: 480px' alt="Angular Pokedek">
+<a><img src="https://i.imgur.com/p35e8Ny.png" style='max-width: 480px' alt="Angular Pokedek"></a>
 <br/>
 <br/>
 
