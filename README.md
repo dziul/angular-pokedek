@@ -18,7 +18,7 @@ Gera um novo componente. Pode usar também: `ng generate directive|pipe|service|
 
 #### `ng build`
 
-Cria o projeto. Os arquivos serão salvo no diretório `dist/`. Adicione `--prod`, para uma construção de produção.
+Executa a construção da aplicação. Os são salvo no diretório `dist/`. Adicione `--prod`, para uma construção de produção.
 
 #### `ng test`
 
@@ -39,6 +39,10 @@ Atualizar os arquivos de ambientes localizados no diretório _**src/environments
 > Os arquivos são gerados com base na configurações em _**env.config.ts**_. Modo para usar as variáveis de ambiente, por exemplo `process`, implicitamente.
 
 > Recomendável usá-lo apenas quando há atualização no arquivo _**env.config.ts**_.
+
+#### `npm run deploy`
+
+Executa a implementação da aplicação para _[github page](https://pages.github.com/)_. Os arquivos são gerado no diretório `docs/`.
 
 ### Estudo
 
