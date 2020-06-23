@@ -1,38 +1,44 @@
-# PokeDek
+<img src="https://i.imgur.com/p35e8Ny.png" style='width:100%;max-width: 480px' alt="Angular Pokedek">
+<br/>
+<br/>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+Projeto gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 9.1.7.
 
-## Development server
+## Scripts
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### `ng serve`
 
-## Code scaffolding
+Executa o projeto em modo de desenvolvimento. Acesse `http://localhost:4200/` para visualizá-lo.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+> reload automaticamente quando há alteração nos arquivos.
 
-## Build
+#### `ng generate component component-name` ou `ng g c component-name`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Gera um novo componente. Pode usar também: `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Running unit tests
+#### `ng build`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Cria o projeto. Os arquivos serão salvo no diretório `dist/`. Adicione `--prod`, para uma construção de produção.
 
-## Running end-to-end tests
+#### `ng test`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Executa os testes unitarios via [Karma](https://karma-runner.github.io).
 
-## Further help
+#### `ng e2e`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Executas os testes ponta-a-ponta (end-to-end) via [Protractor](http://www.protractortest.org/).
 
-## Arquivos de ambientes
+#### `ng help`
 
-Execute `npm run env-config` para atualizar os arquivos de ambientes localizados no diretório _**src/environments/**_.
+Mostra uma lista de ajuda sobre o Angular CLI. Ou [veja direto aqui](https://github.com/angular/angular-cli/blob/master/README.md).
 
-Os arquivos são gerados com base na configurações em _**env.config.ts**_. Modo para usar as variáveis de ambiente, por exemplo `process`, implicitamente.
+#### `npm run env-config`
 
-> Recomendável usá-lo aepnas quando há atualização no arquivo _**env.config.ts**_.
+Atualizar os arquivos de ambientes localizados no diretório _**src/environments/**_.
+
+> Os arquivos são gerados com base na configurações em _**env.config.ts**_. Modo para usar as variáveis de ambiente, por exemplo `process`, implicitamente.
+
+> Recomendável usá-lo apenas quando há atualização no arquivo _**env.config.ts**_.
 
 ### Estudo
 
@@ -42,10 +48,11 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
   - [ ] Uso de queryParams
   - [x] Tratamento de _errors_
 - [ ] Forms
+  - [ ] Forms reativo
 - [x] RxJs
   - [x] Customização de operator rxJs
   - [x] Tratamento de dados
-  - [ ] Tratamento de _loading_
+  - [x] Tratamento de _loading_
   - [x] Criação de _Observables/Subscriptions_
 - [x] Http
   - [x] Tratamento de requisição
@@ -66,11 +73,11 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
   - [x] Criação de pipe
 - [x] Diretivas
   - [x] Criação de diretiva
+    - [x] Criação de carregamento de imagem preguiçoso (lazy-src-load)
 
 ### Referências
 
 - Angular
-
   - [Curso/Video aulas Angular 2+](https://www.youtube.com/watch?v=tPOMG0D57S0&list=PLGxZ4Rq3BOBoSRcKWEdQACbUCNWLczg2G&index=1)
   - Meta tags
     - https://angular.io/api/platform-browser/Meta
@@ -78,16 +85,11 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
   - Document Title
     - https://angular.io/guide/set-document-title
   - Route
-
     - https://angular.io/guide/router
-
 - Creating Custom Operators in RxJS
-
   - https://netbasal.com/creating-custom-operators-in-rxjs-32f052d69457
-
 - FromEvent vs addListenerEvent
   http://cangaceirojavascript.com.br/rxjs-lidando-com-eventos-elegantemente/
-
 - Diretivas
 - Pipes
 - Operators
@@ -102,3 +104,4 @@ Os arquivos são gerados com base na configurações em _**env.config.ts**_. Mod
 - deploy ~ github page
   - https://blog.bitsrc.io/deploy-your-angular-project-to-github-pages-7cbacb96f35b
   - https://dzone.com/articles/deploy-angular-app-on-github-pages
+- [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
