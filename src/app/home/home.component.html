@@ -1,3 +1,5 @@
+<img src="./assets//images/logo.png" alt="Angular Pokedek" class="home__logo" />
+
 <form class="home__form">
   <mat-form-field>
     <input
@@ -18,8 +20,8 @@
         [value]="option.id"
         class="home__option"
       >
-        {{ option.name }} #{{ option.id }}
         <img [src]="option.imageIcon" [alt]="option.name" lazySrcLoad />
+        {{ option.name }} #{{ option.id }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
