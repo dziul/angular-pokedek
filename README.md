@@ -1,5 +1,5 @@
 
-  [![Angular Pokedek](https://i.imgur.com/p35e8Ny.png)](#)
+  [![Angular Pokedek](https://i.imgur.com/8HkV3FP.png)](#)
 <br/>
 <br/>
 
