@@ -1,0 +1,52 @@
+<label class="poke-select__input">
+  <input
+    type="text"
+    placeholder="Search by name or id..."
+    [(ngModel)]="inputValue"
+    (keydown)="onKeyDownInput($event)"
+    #input
+  />
+  <button
+    mat-button
+    *ngIf="inputValue"
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="inputValue = ''"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</label>
+<ul
+  *ngIf="list$ | async as list"
+  class="poke-select__select"
+  role="listbox"
+  (keydown)="onKeyDown($event)"
+>
+  <li
+    *ngFor="let item of list | where: inputValue; let index = index"
+    class="poke-select__option"
+    role="listitem"
+  >
+    <a
+      mat-button
+      [routerLink]="['/pokedek', item.id]"
+      routerLinkActive="active"
+      [keyboardNavigableItem]="item.name"
+      (click)="onClick(index)"
+    >
+      <h4 class="poke-select__text">
+        {{ item.name }} <small>#{{ item.id }}</small>
+      </h4>
+      <img
+        [src]="item.imageIcon"
+        class="poke-select__image"
+        [alt]="item.name"
+        routerLinkActive="active"
+        [isActiveImage]="item"
+        (isActiveEmitter)="onIsActiveImage($event)"
+        lazySrcLoad
+      /><!-- depois de carregado add class checked-->
+    </a>
+  </li>
+</ul>

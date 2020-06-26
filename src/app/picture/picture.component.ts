@@ -30,7 +30,7 @@ export class PictureComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor() {}
   @Input() src = '';
   @Input() alt = '';
-  @Output() loaded = new EventEmitter();
+  @Output() loaded = new EventEmitter<boolean>();
 
   @ViewChild('picture', { read: ElementRef }) pictureElement: ElementRef<HTMLImageElement>;
 
@@ -39,7 +39,6 @@ export class PictureComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     fromEvent<EventTargetImageModel>(this.pictureElement.nativeElement, 'load').subscribe(
       (event) => {
-        console.log(event);
         this.loaded.emit(true);
       }
     );

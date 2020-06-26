@@ -6,13 +6,15 @@
   align-items: stretch;
   justify-content: space-between;
   overflow: hidden;
-  background: rgba(253, 213, 0, 0.5);
+  transition: background-color 0.3s;
+  // background: rgba(253, 213, 0, 0.5);
 
   @include element('content') {
     display: flex;
     align-items: stretch;
     width: 100%;
-    background: rgb(253, 213, 0);
+    transition: background-color 0.3s;
+    // background: rgb(253, 213, 0);
     position: relative;
     z-index: 5;
 
@@ -99,6 +101,15 @@
       width: 100%;
       max-width: 360px;
       max-height: 520px;
+      transform: translateX(-20px);
+      opacity: 0;
+      transition: transform 0.4s;
+
+      &.loaded {
+        transform: translateX(0);
+        animation: fadeIn 0.2s;
+        opacity: 1;
+      }
 
       @media (min-width: 1281px) {
         right: -12%;
@@ -186,5 +197,14 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

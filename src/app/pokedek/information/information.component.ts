@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BehaviorSubject, empty, Observable, Subject } from 'rxjs';
@@ -14,23 +14,26 @@ import { PokeStoreService } from '../../shared/poke-store.service';
   templateUrl: './information.component.html',
   styleUrls: ['./information.component.scss'],
 })
-export class InformationComponent implements OnInit, OnDestroy {
+export class InformationComponent implements OnInit {
   information$: Observable<PokemonParsed>;
-
   imageLoaded$ = new BehaviorSubject(false);
   error$ = new Subject<number | string>();
   paramsId$ = new Subject<string | number>();
 
+  backgroundColorPrimary = 'rgba(253, 213, 0, 0.5)';
+  backgroundColorSecond = 'rgb(253, 213, 0)';
+
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private renderer: Renderer2,
+    private elementHost: ElementRef,
     private htmlDocument: HtmlDocumentService,
     private store: PokeStoreService
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: { id: number | string }) => {
-      this.information$ = this.store.getPokemonInformation(params.id).pipe(
+      this.information$ = this.store.getPokemonInformation(params.id.toString().toLowerCase()).pipe(
         initialize(() => {
           this.imageLoaded$.next(false);
           this.error$.next(undefined);
@@ -48,9 +51,12 @@ export class InformationComponent implements OnInit, OnDestroy {
     });
   }
 
-  onImageLoaded(on) {
+  onImageLoaded(on: boolean) {
     this.imageLoaded$.next(on);
   }
 
-  ngOnDestroy() {}
+  changeBackgroundColor(color: number[]) {
+    this.backgroundColorPrimary = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.5)`;
+    this.backgroundColorSecond = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+  }
 }

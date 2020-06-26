@@ -1,5 +1,4 @@
-
-  [![Angular Pokedek](https://i.imgur.com/p35e8Ny.png)](#)
+[![Angular Pokedek](https://i.imgur.com/p35e8Ny.png)](#)
 <br/>
 <br/>
 
@@ -40,6 +39,10 @@ Atualizar os arquivos de ambientes localizados no diretório _**src/environments
 > Os arquivos são gerados com base na configurações em _**env.config.ts**_. Modo para usar as variáveis de ambiente, por exemplo `process`, implicitamente.
 
 > Recomendável usá-lo apenas quando há atualização no arquivo _**env.config.ts**_.
+
+#### `npm run download-image`
+
+Baixa todas as imagens "icon" dos pokemons. Com base em [pokemondb.net](https://pokemondb.net/). Método usado apenas para ter a possibilidade de manipular as imagens, por exemplo usar canvasAPI.
 
 #### `npm run deploy`
 
@@ -84,6 +87,8 @@ Executa a implementação da aplicação para _[github page](https://pages.githu
 
 - Angular
   - [Curso/Video aulas Angular 2+](https://www.youtube.com/watch?v=tPOMG0D57S0&list=PLGxZ4Rq3BOBoSRcKWEdQACbUCNWLczg2G&index=1)
+  - Angular Testing
+    - https://angular.io/guide/testing
   - Meta tags
     - https://angular.io/api/platform-browser/Meta
     - https://angular.io/api/platform-browser/Meta
@@ -110,3 +115,4 @@ Executa a implementação da aplicação para _[github page](https://pages.githu
   - https://blog.bitsrc.io/deploy-your-angular-project-to-github-pages-7cbacb96f35b
   - https://dzone.com/articles/deploy-angular-app-on-github-pages
 - [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+- [Jasmine](https://jasmine.github.io/)

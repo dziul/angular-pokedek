@@ -1,5 +1,5 @@
 export const environment = {
-  version: '0.0.1',
+  version: "0.1.6",
   production: false,
-  urlApi: 'https://pokeapi.co/api/v2'
+  urlApi: "https://pokeapi.co/api/v2"
 };

@@ -163,6 +163,7 @@ export class PokeApiService {
   }
   getPokemonImageIcon(nameId: string) {
     // return `https://img.pokemondb.net/sprites/black-white/anim/normal/${nameId}.gif`;
-    return `https://img.pokemondb.net/sprites/sword-shield/icon/${nameId}.png`;
+    // return `https://img.pokemondb.net/sprites/sword-shield/icon/${nameId}.png`;
+    return `./assets/images/pokemons/small/${nameId}.png`;
   }
 }

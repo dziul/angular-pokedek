@@ -6,6 +6,6 @@ it('Should return 2 digits, zero left', () => {
 });
 
 it('Should return 10 digits, zero left', () => {
-  expect(leftFill(5, 10)).toEqual('00000000005');
+  expect(leftFill(5, 10)).toEqual('0000000005');
   expect(leftFill(999, 10)).toEqual('0000000999');
 });

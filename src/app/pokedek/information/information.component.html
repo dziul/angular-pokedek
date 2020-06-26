@@ -1,5 +1,5 @@
-<div class="pokedek">
-  <div class="pokedek__content">
+<div class="pokedek" [ngStyle]="{ 'background-color': backgroundColorPrimary }">
+  <div class="pokedek__content" [ngStyle]="{ 'background-color': backgroundColorSecond }">
     <div *ngIf="information$ | async as information; else loadingError" class="pokedek__info">
       <div class="pokedek__info__content" *ngIf="imageLoaded$ | async; else loaderSecond">
         <small class="pokedek__info__small">{{ information.generation.name.default }}</small>
@@ -20,6 +20,7 @@
         [alt]="information.name.default"
         class="pokedek__info__image"
         (loaded)="onImageLoaded($event)"
+        [ngClass]="{ loaded: imageLoaded$ | async }"
       >
       </app-picture>
     </div>
@@ -43,5 +44,8 @@
     </ng-template>
   </div>
 
-  <app-poke-select class="pokedek__select"></app-poke-select>
+  <app-select
+    class="pokedek__select"
+    (getActivedImageColor)="changeBackgroundColor($event)"
+  ></app-select>
 </div>

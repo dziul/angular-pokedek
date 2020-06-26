@@ -48,7 +48,5 @@ export class LazySrcLoadDirective implements AfterViewInit, OnInit {
       }
     );
     this.intersectionObserver.observe(element);
-
-    console.log(this.intersectionObserver);
   }
 }
