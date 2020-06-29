@@ -6,8 +6,9 @@
   align-items: stretch;
   justify-content: space-between;
   overflow: hidden;
-  transition: background-color 0.3s;
   color: #333;
+  transition: color background-color 0.3s;
+
   &.dark {
     color: #fff;
   }
