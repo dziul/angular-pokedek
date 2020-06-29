@@ -60,7 +60,7 @@ export class IsActiveImageDirective implements AfterViewInit {
 
       const color = colorDominant.pop();
       const isDark = getContrast(color[0], color[1], color[2]) < 50.19;
-      console.log(getContrast(color[0], color[1], color[2]));
+
       this.isActiveEmitter.emit({
         color,
         isDark,
