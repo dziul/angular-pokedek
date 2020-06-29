@@ -19,6 +19,7 @@ import { initialize } from 'src/app/shared/operators/initialize.operator';
 import { PokemonGenerationItem } from '../../shared/models/pokemon-generation.model';
 import { PokeStoreService } from '../../shared/poke-store.service';
 import { SelectOptionDirective } from './select-option.directive';
+import { SelectOnIsActiveImageProp } from './select.model';
 
 @Component({
   selector: 'app-select',
@@ -31,7 +32,7 @@ export class SelectComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(SelectOptionDirective) options: QueryList<SelectOptionDirective>;
 
-  @Output() getActivedImageColor = new EventEmitter<number[]>();
+  @Output() getActivedImageColor = new EventEmitter<SelectOnIsActiveImageProp>();
 
   inputValue = '';
   list$: Observable<PokemonGenerationItem[]>;
@@ -94,7 +95,7 @@ export class SelectComponent implements OnInit, AfterViewInit {
     this.keyManager.setActiveItem(index);
   }
 
-  onIsActiveImage(color: number[]) {
-    this.getActivedImageColor.emit(color);
+  onIsActiveImage(data: SelectOnIsActiveImageProp) {
+    this.getActivedImageColor.emit(data);
   }
 }

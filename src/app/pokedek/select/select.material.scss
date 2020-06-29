@@ -8,6 +8,7 @@ $selector: '.poke-select';
       line-height: 24px;
       mat-icon {
         font-size: 14px;
+        color: #333;
       }
     }
   }
@@ -15,7 +16,7 @@ $selector: '.poke-select';
     .mat-button {
       font-size: 14px;
       text-transform: capitalize;
-      color: #333;
+      color: inherit;
       width: 100%;
       padding: 0;
       margin: 4px 0;

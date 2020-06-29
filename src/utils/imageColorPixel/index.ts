@@ -6,8 +6,16 @@ export const arrayChunk = (data: Uint8ClampedArray, size: number) => {
     throw new RangeError('Size is negative');
   }
   return Array.from({ length: Math.ceil(data.length / size) }, (_: never, index) =>
-    data.slice(index * size, index * size + size)
+    Array.from(data.slice(index * size, index * size + size))
   );
+};
+
+const RGBAList = (colors: Uint8ClampedArray) => {
+  return arrayChunk(colors, 4).map((color) => {
+    const last = color.pop();
+    color.push(last / 255);
+    return color;
+  });
 };
 
 export const getContrast = (r: number, g: number, b: number) => {
@@ -23,43 +31,58 @@ export const sortDarkestToLightest = (colors: Uint8ClampedArray) => {
   );
 };
 
-export const getColorByConstrastPorcentage = (
-  colors: Uint8ClampedArray,
-  percentageStart: number,
-  percentageEnd = 100
-) => {
-  const chunks = arrayChunk(colors, 4);
-  const colorOut = chunks
-    .filter((color) => {
-      const constrast = getContrast(color[0], color[1], color[2]);
-      return constrast > percentageStart && constrast < percentageEnd;
-    })
-    .sort(
-      (colorA, colorB) =>
-        getContrast(colorA[0], colorA[1], colorA[2]) - getContrast(colorB[0], colorB[1], colorB[2])
-    )
-    .map((color) => Array.from(color));
+// export const getColorByConstrastPorcentage = (
+//   colors: Uint8ClampedArray,
+//   percentageStart: number,
+//   percentageEnd = 100
+// ) => {
+//   const chunks = arrayChunk(colors, 4);
+//   const colorOut = chunks
+//     .filter((color) => {
+//       const constrast = getContrast(color[0], color[1], color[2]);
+//       return constrast > percentageStart && constrast < percentageEnd;
+//     })
+//     .sort(
+//       (colorA, colorB) =>
+//         getContrast(colorA[0], colorA[1], colorA[2]) - getContrast(colorB[0], colorB[1], colorB[2])
+//     )
+//     .map((color) => Array.from(color));
 
-  return colorOut;
-};
+//   return colorOut;
+// };
 
-export const dataColorToRgba = (color: Uint8ClampedArray) => {
-  return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3] / 255})`;
-};
-export const lightestColor = (colors: Uint8ClampedArray) => {
-  const parsed = sortDarkestToLightest(colors);
-  return parsed.pop();
-};
+// export const dataColorToRgba = (color: Uint8ClampedArray) => {
+//   return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3] / 255})`;
+// };
 
-export const getColorsOfImage = (imageUrl: string, scale = 1) => {
-  const elementImage = new Image();
-  elementImage.src = imageUrl;
-  elementImage.crossOrigin = 'Anonymous';
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  const imageWith = elementImage.width * scale;
-  const imageHeight = elementImage.height * scale;
-  context.drawImage(elementImage, 0, 0, imageWith, imageHeight);
-  const iamgeData = context.getImageData(0, 0, imageWith, imageHeight);
-  return iamgeData.data;
+// export const lightestColor = (colors: Uint8ClampedArray) => {
+//   const parsed = sortDarkestToLightest(colors);
+//   return parsed.pop();
+// };
+
+export const getDominantColor = (colors: Uint8ClampedArray, ignoreRGBAColors?: number[][]) => {
+  const separator = '-';
+
+  const duplicates = RGBAList(colors).reduce((acc, value) => {
+    const key = value.join(separator);
+
+    const checkIgnores =
+      Array.isArray(ignoreRGBAColors) &&
+      ignoreRGBAColors.some((RGBA) => key.includes(RGBA.join(separator)));
+    if (checkIgnores) {
+      return acc;
+    }
+
+    acc[key] = acc[key] ? acc[key] + 1 : 1;
+    return acc;
+  }, {} as { [k: string]: number });
+
+  const valueMajor = Math.max(...Object.values(duplicates));
+
+  return Object.keys(duplicates).reduce((acc, value) => {
+    if (duplicates[value] === valueMajor) {
+      acc.push(value.split(separator).map(Number));
+    }
+    return acc;
+  }, [] as number[][]);
 };

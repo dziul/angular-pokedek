@@ -1,5 +1,9 @@
-<div class="pokedek" [ngStyle]="{ 'background-color': backgroundColorPrimary }">
-  <div class="pokedek__content" [ngStyle]="{ 'background-color': backgroundColorSecond }">
+<div
+  class="pokedek"
+  [ngStyle]="{ 'background-color': backgroundColorPrimary }"
+  [class.dark]="isDark"
+>
+  <div class="pokedek__content" [ngStyle]="{ 'background-color': backgroundColorSecondary }">
     <div *ngIf="information$ | async as information; else loadingError" class="pokedek__info">
       <div class="pokedek__info__content" *ngIf="imageLoaded$ | async; else loaderSecond">
         <small class="pokedek__info__small">{{ information.generation.name.default }}</small>

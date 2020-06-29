@@ -8,9 +8,10 @@ import { HtmlDocumentService } from '../../shared/html-document/html-document.se
 import { PokemonParsed } from '../../shared/models/pokemon.model';
 import { initialize } from '../../shared/operators/initialize.operator';
 import { PokeStoreService } from '../../shared/poke-store.service';
+import { SelectOnIsActiveImageProp } from '../select/select.model';
 
 @Component({
-  selector: 'app-pokedek',
+  selector: 'app-information',
   templateUrl: './information.component.html',
   styleUrls: ['./information.component.scss'],
 })
@@ -20,8 +21,9 @@ export class InformationComponent implements OnInit {
   error$ = new Subject<number | string>();
   paramsId$ = new Subject<string | number>();
 
-  backgroundColorPrimary = 'rgba(253, 213, 0, 0.5)';
-  backgroundColorSecond = 'rgb(253, 213, 0)';
+  backgroundColorPrimary = 'rgba(253, 213, 0, 0.7)';
+  backgroundColorSecondary = 'rgb(253, 213, 0)';
+  isDark: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,8 +57,10 @@ export class InformationComponent implements OnInit {
     this.imageLoaded$.next(on);
   }
 
-  changeBackgroundColor(color: number[]) {
-    this.backgroundColorPrimary = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.5)`;
-    this.backgroundColorSecond = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+  changeBackgroundColor(data: SelectOnIsActiveImageProp) {
+    const { color, isDark } = data;
+    this.backgroundColorPrimary = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.7)`;
+    this.backgroundColorSecondary = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+    this.isDark = isDark;
   }
 }

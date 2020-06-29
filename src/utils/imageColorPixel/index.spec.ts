@@ -1,15 +1,58 @@
-import { lightestColor, sortDarkestToLightest } from '.';
+import { getDominantColor } from './index';
 
-it('Should sort color by dark to light and get color lightest', () => {
-  const colors = new Uint8ClampedArray([98, 60, 21, 255, 0, 59, 57, 255, 239, 59, 57, 255]);
-  const sortedColors = sortDarkestToLightest(colors);
+it('Should return all values when there is no filter', () => {
+  const colors = new Uint8ClampedArray([
+    0,
+    0,
+    0,
+    255,
+    0,
+    0,
+    0,
+    0,
+    255,
+    224,
+    221,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    224,
+    221,
+    0,
+  ]);
 
-  const should = [
-    new Uint8ClampedArray([0, 59, 57, 255]),
-    new Uint8ClampedArray([98, 60, 21, 255]),
-    new Uint8ClampedArray([239, 59, 57, 255]),
-  ];
-  expect(sortedColors).toEqual(should);
+  expect(getDominantColor(colors)).toEqual([
+    [0, 0, 0, 0], // r g b a
+    [255, 224, 221, 0],
+  ]);
+});
 
-  expect(lightestColor(colors)).toEqual(new Uint8ClampedArray([239, 59, 57, 255]));
+it('Should return all without ignored values', () => {
+  const colors = new Uint8ClampedArray([
+    0,
+    0,
+    0,
+    255,
+    0,
+    0,
+    0,
+    0,
+    255,
+    224,
+    221,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    224,
+    221,
+    0,
+  ]);
+
+  expect(getDominantColor(colors, [[255, 224, 221]])).toEqual([[0, 0, 0, 0]]);
 });
