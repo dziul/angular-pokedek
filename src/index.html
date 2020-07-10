@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Angular Pokedek</title>
-    <meta name="description" content="Get pokemon information with this simple pokedek developed with
-    Angular" />
+    <meta
+      name="description"
+      content="Get pokemon information with this simple pokedek developed with
+    Angular"
+    />
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -16,12 +19,23 @@
   </head>
   <body class="mat-typography">
     <app-root></app-root>
-  </body>
 
-  <script>
-    console.log(`
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172325085-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
- █████╗ ███╗   ██╗ ██████╗ ██╗   ██╗██╗      █████╗ ██████╗     ██████╗  ██████╗ ██╗  ██╗███████╗██████╗ ███████╗██╗  ██╗
+      gtag('config', 'UA-172325085-1');
+    </script>
+
+    <script>
+      console.log(`
+
+█████╗ ███╗   ██╗ ██████╗ ██╗   ██╗██╗      █████╗ ██████╗     ██████╗  ██████╗ ██╗  ██╗███████╗██████╗ ███████╗██╗  ██╗
 ██╔══██╗████╗  ██║██╔════╝ ██║   ██║██║     ██╔══██╗██╔══██╗    ██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝██╔══██╗██╔════╝██║ ██╔╝
 ███████║██╔██╗ ██║██║  ███╗██║   ██║██║     ███████║██████╔╝    ██████╔╝██║   ██║█████╔╝ █████╗  ██║  ██║█████╗  █████╔╝
 ██╔══██║██║╚██╗██║██║   ██║██║   ██║██║     ██╔══██║██╔══██╗    ██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██║  ██║██╔══╝  ██╔═██╗
@@ -30,6 +44,7 @@
 
 
 
-    `);
-  </script>
+  `);
+    </script>
+  </body>
 </html>
